@@ -378,6 +378,7 @@ fun createSettingsResponse(fbb: FlatBufferBuilder, server: VRServer): Int {
 		.createSettingsResponse(
 			fbb,
 			createSteamVRSettings(fbb, bridge),
+			server.configManager.vrConfig.server.enableALVRBridge,
 			createFilterSettings(
 				fbb,
 				server.configManager.vrConfig.filters,

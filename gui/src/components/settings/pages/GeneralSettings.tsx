@@ -58,6 +58,7 @@ export type SettingsForm = {
     leftHand: boolean;
     rightHand: boolean;
   };
+  alvrBridgeEnabled: boolean;
   filtering: {
     type: number;
     amount: number;
@@ -121,6 +122,7 @@ const defaultValues: SettingsForm = {
     leftKnee: false,
     rightKnee: false,
   },
+  alvrBridgeEnabled: true,
   toggles: {
     extendedSpine: true,
     extendedPelvis: true,
@@ -214,6 +216,8 @@ export function GeneralSettings() {
       trackers.automaticTrackerToggle = values.trackers.automaticTrackerToggle;
       settings.steamVrTrackers = trackers;
     }
+
+    settings.alvrBridgeEnabled = values.alvrBridgeEnabled;
 
     const modelSettings = new ModelSettingsT();
 
@@ -321,6 +325,8 @@ export function GeneralSettings() {
         setHandsWarning(false);
       }
     }
+
+    formData.alvrBridgeEnabled = settings.alvrBridgeEnabled;
 
     if (settings.modelSettings?.toggles) {
       formData.toggles = Object.keys(settings.modelSettings.toggles).reduce(
@@ -465,6 +471,14 @@ export function GeneralSettings() {
                   <Typography key={i}>{line}</Typography>
                 ))}
             </div>
+            <div className="flex flex-col pt-4" />
+            <CheckBox
+              variant="toggle"
+              outlined
+              control={control}
+              name="alvrBridgeEnabled"
+              label="Head Send Data Bridge (ALVR)"
+            />
             <div className="flex flex-col pt-4" />
             <Typography variant="section-title">
               {l10n.getString(

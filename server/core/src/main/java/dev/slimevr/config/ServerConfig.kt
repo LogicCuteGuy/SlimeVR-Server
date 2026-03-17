@@ -10,6 +10,8 @@ import kotlinx.coroutines.sync.Mutex
 class ServerConfig {
 	val trackerPort: Int = 6969
 
+	var enableALVRBridge: Boolean = true
+
 	var useMagnetometerOnAllTrackers: Boolean = false
 		private set
 
